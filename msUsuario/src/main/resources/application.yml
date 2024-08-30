@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3305/bdtest
+    username: root
+    password: lampi
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  kafka:
+    bootstrap-servers: localhost:9090
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all # Configura o nível de confirmação para o produtor. "all" garante que todas as réplicas recebam a mensagem
+      batch-size: 16384 #tamanho da mensagem em byte
+      linger-ms: 1 # Tempo em milissegundos para aguardar antes de enviar um lote de mensagens
+      buffer-memory: 33554432 # Memória total em bytes que o produtor pode usar para buffer
+      
+  api:
+    security:
+    token: "${JWT_SECRET:32rASD213dsa}"
+
+
+
